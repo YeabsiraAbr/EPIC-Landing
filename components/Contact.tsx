@@ -39,7 +39,7 @@ export default function Contact() {
           </h2>
           <div className="w-24 h-1 bg-black mx-auto mb-4"></div>
           <p className="text-xl text-black/70 max-w-2xl mx-auto">
-            Ready to start your next project? Contact us today and let's discuss how we can help.
+            Ready to start your next project? Contact us today and let&apos;s discuss how we can help.
           </p>
         </div>
 
