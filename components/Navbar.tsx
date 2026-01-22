@@ -1,143 +1,104 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
+const navItems = [
+  { label: "Home", id: "home" },
+  { label: "About", id: "about" },
+  { label: "Services", id: "services" },
+  { label: "Why us", id: "why" },
+  { label: "Contact", id: "contact" },
+];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80; // Height of navbar
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+    const el = document.getElementById(id);
+    if (!el) return;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-      setIsMobileMenuOpen(false);
-    }
+    const offset = 84;
+    const y = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: y, behavior: "smooth" });
+    setOpen(false);
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white shadow-md border-b border-black/10"
-          : "bg-white/95 backdrop-blur-sm"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <div className="flex-shrink-0">
+    <header className="fixed inset-x-0 top-0 z-50">
+      <div className="container-pad pt-4">
+        <div
+          className={[
+            "rounded-2xl transition-all",
+            isScrolled ? "glass shadow-[0_20px_80px_rgba(0,0,0,0.45)]" : "bg-transparent",
+          ].join(" ")}
+        >
+          <div className="flex items-center justify-between px-4 sm:px-6 py-3">
             <button
               onClick={() => scrollToSection("home")}
-              className="text-2xl font-bold text-black hover:text-black/70 transition-colors cursor-pointer"
+              className="flex items-center gap-2 text-sm font-semibold tracking-tight"
+              aria-label="Go to home"
             >
-              Epic Software Solutions
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 border border-white/10">
+                <span className="text-base">E</span>
+              </span>
+              <span className="hidden sm:inline text-white">Epic</span>
+              <span className="hidden sm:inline text-white/60">Software</span>
+            </button>
+
+            <nav className="hidden md:flex items-center gap-1">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="rounded-full px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </nav>
+
+            <div className="hidden md:flex items-center gap-3">
+              <a href="#contact" className="btn-primary">
+                Let’s talk
+              </a>
+            </div>
+
+            <button
+              className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl glass"
+              onClick={() => setOpen((v) => !v)}
+              aria-label="Open menu"
+            >
+              <span className="text-lg">{open ? "×" : "☰"}</span>
             </button>
           </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
-            <button
-              onClick={() => scrollToSection("home")}
-              className="text-black hover:text-black/70 transition-colors font-medium"
-            >
-              Home
-            </button>
-            <button
-              onClick={() => scrollToSection("about")}
-              className="text-black hover:text-black/70 transition-colors font-medium"
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection("services")}
-              className="text-black hover:text-black/70 transition-colors font-medium"
-            >
-              Services
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="text-black hover:text-black/70 transition-colors font-medium"
-            >
-              Contact
-            </button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-black"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              {isMobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
+          {open && (
+            <div className="md:hidden border-t border-white/10 px-4 pb-4">
+              <div className="pt-3 grid gap-1">
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className="text-left rounded-xl px-3 py-3 text-sm text-white/70 hover:text-white hover:bg-white/5 transition"
+                  >
+                    {item.label}
+                  </button>
+                ))}
+                <a href="#contact" onClick={() => setOpen(false)} className="btn-primary mt-2">
+                  Let’s talk
+                </a>
+              </div>
+            </div>
+          )}
         </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden pb-4 space-y-2">
-            <button
-              onClick={() => scrollToSection("home")}
-              className="block w-full text-left px-4 py-2 text-black hover:bg-black/5 transition-colors"
-            >
-              Home
-            </button>
-            <button
-              onClick={() => scrollToSection("about")}
-              className="block w-full text-left px-4 py-2 text-black hover:bg-black/5 transition-colors"
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection("services")}
-              className="block w-full text-left px-4 py-2 text-black hover:bg-black/5 transition-colors"
-            >
-              Services
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="block w-full text-left px-4 py-2 text-black hover:bg-black/5 transition-colors"
-            >
-              Contact
-            </button>
-          </div>
-        )}
       </div>
-    </nav>
+    </header>
   );
 }
-

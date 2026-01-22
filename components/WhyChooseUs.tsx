@@ -1,67 +1,92 @@
 export default function WhyChooseUs() {
   const reasons = [
     {
-      title: "Expert Team",
+      title: "Premium quality",
       description:
-        "Our team consists of highly skilled developers, designers, and consultants with years of industry experience.",
+        "Polished UI, careful details, and performance budgets so your product feels premium.",
     },
     {
-      title: "Proven Track Record",
+      title: "Modern stack",
       description:
-        "We have successfully delivered hundreds of projects across various industries and technologies.",
+        "Contemporary frameworks and tooling, chosen to keep velocity high and maintenance low.",
     },
     {
-      title: "Innovative Solutions",
+      title: "Clear communication",
       description:
-        "We stay ahead of technology trends and leverage the latest tools and frameworks to deliver cutting-edge solutions.",
+        "Weekly demos, crisp status updates, and shared dashboards — you always know where we are.",
     },
     {
-      title: "Client-Focused",
+      title: "Engineering rigor",
       description:
-        "Your success is our priority. We work closely with you to understand your needs and deliver solutions that exceed expectations.",
-    },
-    {
-      title: "Agile Methodology",
-      description:
-        "We follow agile development practices to ensure flexibility, transparency, and timely delivery of projects.",
-    },
-    {
-      title: "24/7 Support",
-      description:
-        "Our dedicated support team is available around the clock to assist you with any technical issues or questions.",
+        "Clean architecture, testing, CI/CD, observability, and security practices by default.",
     },
   ];
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
-            Why Choose Epic Software Solutions?
-          </h2>
-          <div className="w-24 h-1 bg-black mx-auto mb-4"></div>
-          <p className="text-xl text-black/70 max-w-2xl mx-auto">
-            We combine expertise, innovation, and dedication to deliver exceptional results
-          </p>
-        </div>
+    <section id="why" className="section-pad">
+      <div className="container-pad">
+        <div className="grid lg:grid-cols-2 gap-10 items-start">
+          <div>
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
+              Why teams choose Epic
+            </h2>
+            <p className="mt-4 text-white/65">
+              You’re not just hiring developers — you’re partnering with a team that
+              obsesses over craft, speed, and reliability.
+            </p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {reasons.map((reason, index) => (
-            <div
-              key={index}
-              className="p-6 border-l-4 border-black"
-            >
-              <h3 className="text-2xl font-bold text-black mb-3">
-                {reason.title}
-              </h3>
-              <p className="text-black/70 leading-relaxed">
-                {reason.description}
+            <div className="mt-8 card">
+              <p className="text-sm font-semibold">Our promise</p>
+              <p className="mt-3 text-white/65">
+                Deliver measurable outcomes: faster shipping, cleaner systems, and a
+                product experience your customers remember.
               </p>
+              <div className="mt-6 grid grid-cols-3 gap-3 text-center">
+                {[
+                  ["2–4 wks", "to first demo"],
+                  ["99.9%", "uptime targets"],
+                  ["24/7", "monitoring ready"],
+                ].map(([k, v]) => (
+                  <div key={k} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                    <p className="text-lg font-semibold">{k}</p>
+                    <p className="mt-1 text-xs text-white/60">{v}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
+          </div>
+
+          <div className="grid gap-4">
+            {reasons.map((r) => (
+              <div key={r.title} className="card">
+                <div className="flex items-start gap-4">
+                  <div className="mt-1 h-10 w-10 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center">
+                    ✦
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold">{r.title}</h3>
+                    <p className="mt-2 text-sm text-white/60 leading-relaxed">
+                      {r.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            <div className="rounded-3xl border border-white/10 bg-gradient-to-r from-white/5 via-white/[0.08] to-white/5 p-6">
+              <p className="text-sm font-semibold">Want the “Apple‑clean” look?</p>
+              <p className="mt-2 text-sm text-white/60">
+                We can re‑skin existing products, build design systems, or deliver a full
+                redesign with modern typography, spacing, and motion.
+              </p>
+              <a href="#contact" className="btn-primary mt-5">
+                Get a quote
+                <span className="ml-2">→</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
-

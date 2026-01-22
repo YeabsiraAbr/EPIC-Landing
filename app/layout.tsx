@@ -7,8 +7,9 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Epic Software Solutions - Innovative Technology Partner",
-  description: "Epic Software Solutions delivers cutting-edge software development, consulting, and technology solutions to help businesses thrive in the digital age.",
+  title: "Epic Software Solutions — Modern, Elegant Software Delivery",
+  description:
+    "Premium product design and engineering: web, mobile, cloud, and scalable systems built with an Apple-clean look and high-performance foundations.",
 };
 
 export default function RootLayout({
@@ -17,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Navbar />
         {children}
@@ -26,4 +27,3 @@ export default function RootLayout({
     </html>
   );
 }
-

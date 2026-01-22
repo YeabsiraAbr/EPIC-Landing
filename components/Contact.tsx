@@ -12,155 +12,112 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
+    // TODO: wire up to your backend/email provider.
     console.log("Form submitted:", formData);
-    alert("Thank you for your message! We'll get back to you soon.");
+    alert("Thanks! We’ll reach out shortly.");
     setFormData({ name: "", email: "", company: "", message: "" });
   };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
-    <section
-      id="contact"
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-black/5"
-    >
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
-            Get In Touch
+    <section id="contact" className="section-pad relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 bg-radial opacity-60" />
+      <div className="pointer-events-none absolute inset-0 bg-grid opacity-50" />
+
+      <div className="container-pad relative">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
+            Let’s build something premium
           </h2>
-          <div className="w-24 h-1 bg-black mx-auto mb-4"></div>
-          <p className="text-xl text-black/70 max-w-2xl mx-auto">
-            Ready to start your next project? Contact us today and let&apos;s discuss how we can help.
+          <p className="mt-4 text-white/65">
+            Tell us what you’re working on. We’ll respond with next steps, timeline
+            guidance, and a clear plan.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          <div>
-            <h3 className="text-2xl font-bold text-black mb-6">
-              Contact Information
-            </h3>
-            <div className="space-y-6">
-              <div>
-                <h4 className="font-semibold text-black mb-2">Email</h4>
-                <a
-                  href="mailto:info@epicsoftwaresolutions.com"
-                  className="text-black/70 hover:text-black transition-colors"
-                >
-                  info@epicsoftwaresolutions.com
-                </a>
+        <div className="mt-12 grid lg:grid-cols-5 gap-6">
+          <div className="lg:col-span-2 card">
+            <p className="text-sm font-semibold">Contact</p>
+            <div className="mt-5 space-y-4 text-sm text-white/70">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="text-white/80 font-semibold">Email</p>
+                <p className="mt-1 text-white/60">hello@epicsoftwaresolutions.com</p>
               </div>
-              <div>
-                <h4 className="font-semibold text-black mb-2">Phone</h4>
-                <a
-                  href="tel:+251929529586"
-                  className="text-black/70 hover:text-black transition-colors"
-                >
-                  +251 929 529 586
-                </a>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="text-white/80 font-semibold">Response time</p>
+                <p className="mt-1 text-white/60">Typically within 1 business day</p>
               </div>
-              <div>
-                <h4 className="font-semibold text-black mb-2">Address</h4>
-                <p className="text-black/70">
-                  Addis Ababa, Ethiopia
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-black mb-2">Business Hours</h4>
-                <p className="text-black/70">
-                  Monday - Friday: 9:00 AM - 6:00 PM<br />
-                  Saturday - Sunday: Closed
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="text-white/80 font-semibold">What to include</p>
+                <p className="mt-1 text-white/60">
+                  Goals, target users, must‑have features, and your ideal launch window.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white p-8 rounded-lg border border-black/10">
-            <h3 className="text-2xl font-bold text-black mb-6">
-              Send Us a Message
-            </h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-black mb-2"
-                >
-                  Name *
-                </label>
+          <div className="lg:col-span-3 card">
+            <form onSubmit={handleSubmit} className="grid sm:grid-cols-2 gap-4">
+              <div className="sm:col-span-1">
+                <label className="text-xs text-white/60">Name</label>
                 <input
-                  type="text"
-                  id="name"
                   name="name"
-                  required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-black/20 rounded-lg focus:outline-none focus:border-black transition-colors"
+                  required
+                  className="mt-2 w-full rounded-2xl bg-white/5 border border-white/10 px-4 py-3 text-sm outline-none focus:border-white/25"
+                  placeholder="Your name"
                 />
               </div>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-black mb-2"
-                >
-                  Email *
-                </label>
+              <div className="sm:col-span-1">
+                <label className="text-xs text-white/60">Email</label>
                 <input
-                  type="email"
-                  id="email"
                   name="email"
-                  required
+                  type="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-black/20 rounded-lg focus:outline-none focus:border-black transition-colors"
+                  required
+                  className="mt-2 w-full rounded-2xl bg-white/5 border border-white/10 px-4 py-3 text-sm outline-none focus:border-white/25"
+                  placeholder="you@company.com"
                 />
               </div>
-              <div>
-                <label
-                  htmlFor="company"
-                  className="block text-sm font-medium text-black mb-2"
-                >
-                  Company
-                </label>
+              <div className="sm:col-span-2">
+                <label className="text-xs text-white/60">Company</label>
                 <input
-                  type="text"
-                  id="company"
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-black/20 rounded-lg focus:outline-none focus:border-black transition-colors"
+                  className="mt-2 w-full rounded-2xl bg-white/5 border border-white/10 px-4 py-3 text-sm outline-none focus:border-white/25"
+                  placeholder="Company (optional)"
                 />
               </div>
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-black mb-2"
-                >
-                  Message *
-                </label>
+              <div className="sm:col-span-2">
+                <label className="text-xs text-white/60">Message</label>
                 <textarea
-                  id="message"
                   name="message"
-                  required
-                  rows={5}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-black/20 rounded-lg focus:outline-none focus:border-black transition-colors resize-none"
+                  required
+                  rows={6}
+                  className="mt-2 w-full rounded-2xl bg-white/5 border border-white/10 px-4 py-3 text-sm outline-none focus:border-white/25 resize-none"
+                  placeholder="Tell us what you want to build…"
                 />
               </div>
-              <button
-                type="submit"
-                className="w-full px-8 py-4 bg-black text-white font-semibold rounded-lg hover:bg-black/90 transition-colors shadow-lg"
-              >
-                Send Message
-              </button>
+
+              <div className="sm:col-span-2 flex items-center justify-between gap-4">
+                <p className="text-xs text-white/45">
+                  By submitting, you agree to be contacted about your request.
+                </p>
+                <button type="submit" className="btn-primary">
+                  Send message
+                  <span className="ml-2">→</span>
+                </button>
+              </div>
             </form>
           </div>
         </div>
@@ -168,4 +125,3 @@ export default function Contact() {
     </section>
   );
 }
-

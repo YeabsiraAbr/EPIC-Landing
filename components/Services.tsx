@@ -1,89 +1,86 @@
 export default function Services() {
   const services = [
     {
-      title: "Custom Software Development",
+      title: "Product & UX Design",
       description:
-        "Tailored software solutions designed to meet your specific business needs. From web applications to enterprise systems, we build scalable and robust software.",
-      icon: "💻",
+        "Research, wireframes, and premium UI design systems that feel modern and effortless.",
+      icon: "✦",
     },
     {
-      title: "Web Development",
+      title: "Web & Platform Engineering",
       description:
-        "Modern, responsive web applications using the latest technologies. We create user-friendly interfaces that deliver exceptional user experiences.",
-      icon: "🌐",
+        "Next.js, APIs, and scalable architectures built for speed, accessibility, and SEO.",
+      icon: "⌬",
     },
     {
-      title: "Mobile App Development",
+      title: "Mobile Apps",
       description:
-        "Native and cross-platform mobile applications for iOS and Android. We build apps that engage users and drive business results.",
-      icon: "📱",
+        "Native and cross‑platform experiences that perform beautifully on iOS and Android.",
+      icon: "◈",
     },
     {
-      title: "Cloud Solutions",
+      title: "Cloud & DevOps",
       description:
-        "Cloud migration, infrastructure setup, and management. We help you leverage cloud technology for scalability and cost efficiency.",
-      icon: "☁️",
+        "CI/CD, infrastructure, observability, and reliability practices that keep you online.",
+      icon: "☁︎",
     },
     {
-      title: "Technology Consulting",
+      title: "Data & AI‑Ready Systems",
       description:
-        "Strategic technology consulting to help you make informed decisions. We analyze your needs and recommend the best solutions.",
-      icon: "🔍",
+        "Clean pipelines and foundations so you can safely adopt analytics and AI features.",
+      icon: "∿",
     },
     {
-      title: "Digital Transformation",
+      title: "Security by Design",
       description:
-        "End-to-end digital transformation services to modernize your business processes and technology stack for the digital age.",
-      icon: "🚀",
-    },
-    {
-      title: "UI/UX Design",
-      description:
-        "User-centered design that combines aesthetics with functionality. We create intuitive interfaces that users love.",
-      icon: "🎨",
-    },
-    {
-      title: "Maintenance & Support",
-      description:
-        "Ongoing maintenance, updates, and technical support to ensure your systems run smoothly and stay up-to-date.",
-      icon: "🔧",
+        "Threat modeling, best practices, and hardening from day one — not an afterthought.",
+      icon: "⟡",
     },
   ];
 
   return (
-    <section
-      id="services"
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-black/5"
-    >
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
-            Our Services
+    <section id="services" className="section-pad relative">
+      <div className="pointer-events-none absolute inset-0 bg-radial opacity-40" />
+      <div className="container-pad relative">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
+            Services that ship — and scale
           </h2>
-          <div className="w-24 h-1 bg-black mx-auto mb-4"></div>
-          <p className="text-xl text-black/70 max-w-2xl mx-auto">
-            Comprehensive technology solutions to help your business thrive
+          <p className="mt-4 text-white/65">
+            A focused offering for teams that want modern, high‑performance software
+            with an elegant, premium feel.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, index) => (
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service) => (
             <div
-              key={index}
-              className="bg-white p-6 rounded-lg border border-black/10 hover:shadow-xl transition-shadow"
+              key={service.title}
+              className="group rounded-3xl border border-white/10 bg-white/5 p-6 hover:bg-white/[0.07] transition"
             >
-              <div className="text-4xl mb-4">{service.icon}</div>
-              <h3 className="text-xl font-bold text-black mb-3">
-                {service.title}
-              </h3>
-              <p className="text-black/70 leading-relaxed">
+              <div className="flex items-center gap-3">
+                <div className="h-11 w-11 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-lg">
+                  {service.icon}
+                </div>
+                <h3 className="text-lg font-semibold">{service.title}</h3>
+              </div>
+              <p className="mt-4 text-sm text-white/60 leading-relaxed">
                 {service.description}
+              </p>
+              <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+              <p className="mt-4 text-xs text-white/50">
+                Typical deliverables: roadmap, design system, implementation, and QA.
               </p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <a href="#contact" className="btn-secondary">
+            Tell us about your project
+          </a>
         </div>
       </div>
     </section>
   );
 }
-
